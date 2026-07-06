@@ -15,7 +15,7 @@ public class CorsConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowedOrigins(
-                            "https://placement-management-system-rouge.vercel.app"
+                            "https://placement-management-system-5tydosclp-chafa.vercel.app"
                         )
                         .allowedMethods("*");
             }
