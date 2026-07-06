@@ -10,7 +10,7 @@ export default function Students() {
   const [error, setError] = useState('');
 
   const loadStudents = () => {
-    api.get('/students')
+    api.get('/api/students')
       .then(res => setStudents(res.data))
       .catch(() => setError('Could not load students. Is the backend running?'));
   };
@@ -38,8 +38,8 @@ export default function Students() {
     };
 
     const request = editingId
-      ? api.put(`/students/${editingId}`, payload)
-      : api.post('/students', payload);
+      ? api.put(`/api/students/${editingId}`, payload)
+      : api.post('/api/students', payload);
 
     request
       .then(() => {
@@ -66,7 +66,7 @@ export default function Students() {
 
   const handleDelete = (id) => {
     if (!window.confirm('Delete this student?')) return;
-    api.delete(`/students/${id}`)
+    api.delete(`/api/students/${id}`)
       .then(loadStudents)
       .catch(() => setError('Failed to delete student'));
   };
