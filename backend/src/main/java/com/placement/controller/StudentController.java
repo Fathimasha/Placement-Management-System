@@ -13,7 +13,8 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/students")
-public class StudentController {
+@CrossOrigin(origins = "https://placement-management-system-rouge.vercel.app")
+public class StudentController  {
 
     @Autowired
     private StudentRepository studentRepository;
