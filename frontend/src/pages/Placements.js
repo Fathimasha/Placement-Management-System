@@ -12,7 +12,7 @@ export default function Placements() {
   const [error, setError] = useState('');
 
   const load = () => {
-    api.get('/placements')
+    api.get('/api/placements')
       .then(res => setPlacements(res.data))
       .catch(() => setError('Could not load applications. Is the backend running?'));
   };
@@ -20,14 +20,14 @@ export default function Placements() {
   useEffect(() => { load(); }, []);
 
   const updateStatus = (id, status) => {
-    api.put(`/placements/${id}/status`, { status })
+    api.put(`/api/placements/${id}/status`, { status })
       .then(load)
       .catch(() => setError('Failed to update status'));
   };
 
   const remove = (id) => {
     if (!window.confirm('Remove this application record?')) return;
-    api.delete(`/placements/${id}`)
+    api.delete(`/api/placements/${id}`)
       .then(load)
       .catch(() => setError('Failed to delete record'));
   };

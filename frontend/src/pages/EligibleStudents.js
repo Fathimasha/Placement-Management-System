@@ -9,7 +9,7 @@ export default function EligibleStudents() {
   const [applyMsg, setApplyMsg] = useState('');
 
   useEffect(() => {
-    api.get('/companies')
+    api.get('/api/companies')
       .then(res => setCompanies(res.data))
       .catch(() => setError('Could not load companies. Is the backend running?'));
   }, []);
@@ -23,14 +23,14 @@ export default function EligibleStudents() {
       setEligible([]);
       return;
     }
-    api.get(`/companies/${id}/eligible-students`)
+    api.get(`/api/companies/${id}/eligible-students`)
       .then(res => setEligible(res.data))
       .catch(() => setError('Failed to fetch eligible students'));
   };
 
   const applyStudent = (studentId) => {
     setApplyMsg('');
-    api.post('/placements/apply', { studentId, companyId: parseInt(selectedId, 10) })
+    api.post('/api/placements/apply', { studentId, companyId: parseInt(selectedId, 10) })
       .then(() => setApplyMsg('Application registered successfully.'))
       .catch(err => setApplyMsg(err.response?.data?.error || 'Failed to register application'));
   };

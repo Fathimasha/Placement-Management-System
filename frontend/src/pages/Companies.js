@@ -13,7 +13,7 @@ export default function Companies() {
   const [error, setError] = useState('');
 
   const loadCompanies = () => {
-    api.get('/companies')
+    api.get('/api/companies')
       .then(res => setCompanies(res.data))
       .catch(() => setError('Could not load companies. Is the backend running?'));
   };
@@ -43,8 +43,8 @@ export default function Companies() {
     };
 
     const request = editingId
-      ? api.put(`/companies/${editingId}`, payload)
-      : api.post('/companies', payload);
+      ? api.put(`/api/companies/${editingId}`, payload)
+      : api.post('/api/companies', payload);
 
     request
       .then(() => {
@@ -71,7 +71,7 @@ export default function Companies() {
 
   const handleDelete = (id) => {
     if (!window.confirm('Delete this company and its drive data?')) return;
-    api.delete(`/companies/${id}`)
+    api.delete(`/api/companies/${id}`)
       .then(loadCompanies)
       .catch(() => setError('Failed to delete company'));
   };
